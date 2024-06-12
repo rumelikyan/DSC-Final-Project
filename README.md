@@ -16,5 +16,3 @@ It is important to every restraunt to know how their recipes influence their rat
 | `description`   | User-provided description |
 | `ingredients`   | Text for recipe ingredients |
 | `n_ingredients` | Number of ingredients in recipe |
-
-Part 2
