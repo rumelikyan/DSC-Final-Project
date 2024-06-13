@@ -160,3 +160,42 @@ A permutation test is being conducted because we want to check if the two distri
   frameborder="0"
 style="background: #FFFFFF;"
 ></iframe>
+
+
+
+# Fairness Analysis
+
+For our fairness analysis we wanted to investigate if groups that were marked as a treat, which in our analysis refers to tags that included cookies, cake or brownies had a statistically significant difference in the models performance when compared against recipes that did not include treat related tags. 
+
+Choice of Group X and Group Y:
+
+Group X: Items tagged as "treat" (is_a_treat == 1).
+Group Y: Items not tagged as "treat" (is_a_treat == 0).
+Evaluation Metric:
+
+Metric: Root Mean Squared Error (RMSE).
+Justification: RMSE is suitable for regression tasks, such as predicting ratings, where we want to measure the average magnitude of the errors in predicting numerical values.
+Null and Alternative Hypotheses:
+
+Null Hypothesis: The model's RMSE for items tagged as dessert (Group X) is the same as for items not tagged as dessert (Group Y), indicating no systematic difference in prediction error.
+Alternative Hypothesis: The model's RMSE for items tagged as dessert (Group X) is higher than for items not tagged as dessert (Group Y), suggesting that the model performs worse on desserts.
+
+Choice of Test Statistic and Significance Level:
+
+Test Statistic: Difference in RMSE between Group X (desserts) and Group Y (non-desserts).
+Significance Level: Typically set to α = 0.05
+Resulting p-value:
+
+After performing the permutation test based on 10,000 permutations, the computed p-value is 0.86.
+Conclusion:
+
+Conclusion: Since the p-value (0.86) is more than the significance level (0.05), we reject the null hypothesis. The model's performance is not significantly different between items tagged as treat and items not tagged as treat (fail to reject the null hypothesis).
+
+**Permutation test for fairness analysis**
+<iframe
+  src="assets/fairness_plot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+style="background: #FFFFFF;"
+></iframe>
