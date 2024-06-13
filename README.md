@@ -161,6 +161,28 @@ A permutation test is being conducted because we want to check if the two distri
 style="background: #FFFFFF;"
 ></iframe>
 
+# Framing a Prediction Problem
+
+Our prediction problem involves predicting the ratings of recipes based on their nutritional content and other tags, making it a classification problem. Specifically, we are performing multiclass classification because the ratings are discrete values that fall into multiple categories (e.g., 1, 2, 3, 4, 5). The response variable we are predicting is the rating because the dataset is centered around the ratings of each of the recipes, and understanding what influences these ratings can provide valuable insights for recipe improvement and personalization. We chose the F1-score as our evaluation metric because it balances both precision and recall, providing a more comprehensive measure of a model's performance, especially in cases where the data may be imbalanced. Accuracy alone can be misleading if certain ratings are more frequent—which is something that we have observed earlier when looking at the distributions of ratings (5s are way more common than any other rating). The F1-score ensures that our model performs well across all rating categories.
+
+Additionally, our predictive model is solely based on the columns in just the rating dataset, ensuring that we are not using future information or data unavailable at the prediction time, maintaining the integrity and validity of our model.
+
+# Baseline Model
+
+For our baseline model, we began by splitting the data into features and target, and then splitting the data into training and testing sets. We aimed to predict recipe ratings using a simple classifier. The features included in our model were derived from binarizing a discrete variable (number of steps) and two continous variables (protein and carb pdv). After binarizing, these features are all nominal because they represent categorical data without any inherent ordering.
+
+Our metric score (F1) is 0.67. We believe that our current model is not optimal because it tends to just predict a 5 for every single recipe. This will yield the highest accuracy, so our model finds that it is safer just to predict a 5 for every recipe. This is in part due to the large skew in the ratings column as nearly 80% of all ratings are a 5. In addition, we found that when we look at the mean of the models predictions, we found that the mean is a 5. This means that it predicted a 5 every time no matter—which is understandable based on what we just said.
+
+# Final Model
+
+Our model improvement strategy began with writing a for loop to iterate through the tags columnn and to find the average rating for each unique tag. A pattern that we picked up on when scrolling through the 500+ unique tags was that the lowest rated ones tended to have a certain theme of being 'treats' and thus include the words 'cookie', 'brownie', and/or 'cake'. Because of this, we decided to binarize 'is_a_treat' in which contained a 1 if the recipe's tags contained one of 'cookie', 'brownie', or 'cake'. 
+
+Another attempt made at improving our model was reducing the frequencies of recipes with ratings of fives. As we noted in the baseline model, the model tended to prefer to pick a rating of 5 because this maximized accuracy. So, in order to counteract this, we artificially deleted 25% of recipes that received a rating of 5. This unfortunately did not improve our model and lowered the respective F-1 score, by keeping just the is_treat binarized column the model f-1 score is more accurate. 
+
+We also did use a RandomForestClassifier and conducted a GridSearchCV to tune the following hyperparameters: max_depth and n_estimators. Through a number of iterations, we found the best combinations of the hyperparameters to be  for the max_depth and  for the n_estimators.
+
+Our final F1-score is 0.67. So, ultimately this final model demonstrates minimal improvement over the baseline model. A higher F1-score would have improved precision and recall in predicting recipe ratings. TWe would have liked if the incorporation of 'is_a_treat' and the dataset balancing helped to capture patterns in recipe ratings, but the RandomForestClassifier tuning hyperparameters did indeed slightly enhance the model's predictive ability.
+
 
 
 # Fairness Analysis
