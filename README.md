@@ -92,4 +92,13 @@ This pivot table shows the mean ratings of recipes categorized by whether they h
 style="background: #FFFFFF;"
 ></iframe>
 
+**Aggregating Table**
+<iframe
+  src="assets/interactive_pivot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+style="background: #FFFFFF;"
+></iframe>
+
 
