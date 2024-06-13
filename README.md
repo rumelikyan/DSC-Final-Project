@@ -89,6 +89,7 @@ This pivot table shows the mean ratings of recipes categorized by whether they h
   width="800"
   height="600"
   frameborder="0"
+style="background: #FFFFFF;"
 ></iframe>
 
 
