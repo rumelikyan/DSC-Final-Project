@@ -53,6 +53,12 @@ Important adjustments:
 
 
 ***Univariate Analysis***
+<iframe
+  src="assets/figure_univariate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
 
@@ -62,3 +68,5 @@ Important adjustments:
   height="600"
   frameborder="0"
 ></iframe>
+
+
