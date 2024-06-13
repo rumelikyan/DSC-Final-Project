@@ -70,6 +70,10 @@ For our univariate analysis we are examining the distribution of the ratings col
   frameborder="0"
 ></iframe>
 
+***Bivariate Analysis***
+
+For the bivariate analysis, we are examining the relationship between protein percentage daily value and recipe ratings. High protein refers to protein pdv above 20%, whereas low protein refers to protein pdv below 20%. For both low and high protein recipes, the count per rating is descending, with the most of each being rated as 5 and the least being 1. Additionally, the difference in the proportions does not vary very much per rating.
+
 
 
 <iframe
