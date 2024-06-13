@@ -113,3 +113,11 @@ style="background: #FFFFFF;"
 style="background: #FFFFFF;"
 ></iframe>
 
+**Hypothesis Test**
+<iframe
+  src="assets/hypothesis.html"
+  width="800"
+  height="600"
+  frameborder="0"
+style="background: #FFFFFF;"
+></iframe>
