@@ -62,7 +62,7 @@ Important adjustments:
 
 For our univariate analysis we are examining the distribution of the ratings column. We see here a heavily left skewed distribution as nearly 80% of the ratings are a 5. This will be extremely important for our model predictions later in this project. 
 
-*** Bivariate Analysis ***
+***Bivariate Analysis***
 <iframe
   src="assets/figure_bivariate_correct.html"
   width="800"
@@ -70,11 +70,10 @@ For our univariate analysis we are examining the distribution of the ratings col
   frameborder="0"
 ></iframe>
 
-***Bivariate Analysis***
-
 For the bivariate analysis, we are examining the relationship between protein percentage daily value and recipe ratings. High protein refers to protein pdv above 20%, whereas low protein refers to protein pdv below 20%. For both low and high protein recipes, the count per rating is descending, with the most of each being rated as 5 and the least being 1. Additionally, the difference in the proportions does not vary very much per rating.
 
-
+***Interesting Aggregates***
+This pivot table shows the mean ratings of recipes categorized by whether they have healthy protein content (protein_PDV > 20) and healthy carb content (carbs_PDV < 20). For example, the top line of the pivot table shows us that the average rating for recipes with an "unhealthy" amount of protein and carbs is 4.658152 whereas the bottom line shows us that the the average rating for recipes with an "healthy" amount of both protein and carbs is 4.676057.
 
 <iframe
   src="assets/figure.html"
