@@ -76,12 +76,7 @@ For the bivariate analysis, we are examining the relationship between protein pe
 ***Interesting Aggregates***
 This pivot table shows the mean ratings of recipes categorized by whether they have healthy protein content (protein_PDV > 20) and healthy carb content (carbs_PDV < 20). For example, the top line of the pivot table shows us that the average rating for recipes with an "unhealthy" amount of protein and carbs is 4.658152 whereas the bottom line shows us that the the average rating for recipes with an "healthy" amount of both protein and carbs is 4.676057.
 
-<iframe
-  src="assets/figure.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
+
 
 ***merged dataset***
 <iframe
@@ -101,6 +96,7 @@ style="background: #FFFFFF;"
 style="background: #FFFFFF;"
 ></iframe>
 
+**Missingness permutation tests**
 <iframe
   src="assets/rating_v_minutes.html"
   width="800"
