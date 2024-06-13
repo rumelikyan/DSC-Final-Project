@@ -34,6 +34,7 @@ In this section the goal was firstly to yield a dataframe from our initially mer
 | `contributor_id`| Unique contributor user ID |
 | `submitted`     | Date time object |
 
+***Average Rating***
 Important adjustments:
 1. Merged the recipe and interactions dataframes
    - A left merge on 'id' was performed in order to match each unique recipe with their corresponding rating and review.
@@ -47,7 +48,12 @@ Important adjustments:
    - The nutrition and tags columns contained strings of list. Applying eval removes these strings, and ensures that they are lists as is desired.
 6. Split the nutrition column into 7 other columns (one for each piece of data in the nutrition list)
    - We applied a function that grabbed each unique value in the list, created a new column for each value in the list, and added that value to its corresponding new column.
-8. Converted 'submitted' and 'date' columns 
+7. Converted 'submitted' and 'date' columns to correct format
+   - Using pd.to_datetime, we converted these two columns from objects to the correct datetime format of Year-Month-Day, which will allow us to easily perform analysis on dates if needed.
+
+
+***Univariate Analysis***
+
 
 
 <iframe
