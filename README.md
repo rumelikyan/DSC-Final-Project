@@ -1,5 +1,5 @@
 # Introduction and Question Identification:
-It is important to every restraunt to know how their recipes influence their ratings, more importantly it is important to us to guage how good a recipe is from its contents. Knowing this information helps restraunts optimize their recipes and for people to optimize their eating experience. Therefore, our investigration aims to find how the amount of ***Carbohydrates (PDV)*** and ***Protein (PDV)*** affect a recipe's ratings. This will help us unravel to what extent do people consider the perceived healthiness of a meal when making a rating. [High Protein according to the FDA](https://www.fda.gov/food/nutrition-facts-label/lows-and-highs-percent-daily-value-nutrition-facts-label#:~:text=20%25%20DV%20or%20more%20of,per%20serving%20is%20considered%20high.) is 20% of PDV.
+It is important to every restaurant to know how their recipes will influence customer satisfaction. More importantly, we find it to be rather important to us to be able to guage how good a recipe is solely from its contents and the categorization of the recipe. Knowing this information helps restaurants optimize their recipes and it also helps people to optimize their cooking experience. Therefore, our investigration aims to find how the amount of ***Carbohydrates (PDV)*** and ***Protein (PDV)*** affect a recipe's ratings. This will help us unravel to what extent do people consider the perceived healthiness of a meal when making a rating. [High Percentage Daily Value of a nutrient according to the FDA](https://www.fda.gov/food/nutrition-facts-label/lows-and-highs-percent-daily-value-nutrition-facts-label#:~:text=20%25%20DV%20or%20more%20of,per%20serving%20is%20considered%20high.) is 20%, and we thus plan to utilize this in our further analysis.
 
 The original merged dataframe contains 12 columns
 | Column          | Description |
@@ -35,7 +35,24 @@ In this section the goal was firstly to yield a dataframe from our initially mer
 | `submitted`     | Date time object |
 
 Important adjustments:
-1. Filling null values in ratings with np.nan
+1. Merged the recipe and interactions dataframes
+   - A left merge on 'id' was performed in order to match each unique recipe with their corresponding rating and review.
+2. Filling null values in ratings with np.nan
    - This was an important step because the recipe's that received a rating of 0 were not properly rated and were just observations, therefore they should not be taken in to account when taking an average. Additionally ratings are typically between 1-5 therefore to avoid bias in the data, we filled it with 0's.
-2. asdas
+3. Added the column ***Average Rating***:
+   - We grouped by the unique recipe id column and found the average rating per recipe. This is because there are multiple ratings from different users per recipe.
+4. Renamed columns
+   - When merging and there happens to be a column in the left df with the same name as a column in the right df, it will add '_x' or '_y' to the end of the column name. We made sure to rename 'rating_y' to 'average rating', and 'rating_x' to 'rating' to make our dataframe names more coherent.
+5. Applied the eval operation to the nutrition and tags columns:
+   - The nutrition and tags columns contained strings of list. Applying eval removes these strings, and ensures that they are lists as is desired.
+6. Split the nutrition column into 7 other columns (one for each piece of data in the nutrition list)
+   - We applied a function that grabbed each unique value in the list, created a new column for each value in the list, and added that value to its corresponding new column.
+8. Converted 'submitted' and 'date' columns 
 
+
+<iframe
+  src="assets/figure.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
