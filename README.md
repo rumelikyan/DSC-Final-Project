@@ -48,3 +48,11 @@ Important adjustments:
 6. Split the nutrition column into 7 other columns (one for each piece of data in the nutrition list)
    - We applied a function that grabbed each unique value in the list, created a new column for each value in the list, and added that value to its corresponding new column.
 8. Converted 'submitted' and 'date' columns 
+
+
+<iframe
+  src="assets/figure.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
