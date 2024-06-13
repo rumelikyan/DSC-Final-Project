@@ -85,7 +85,7 @@ This pivot table shows the mean ratings of recipes categorized by whether they h
 
 ***merged dataset***
 <iframe
-  src="assets/interactive_dataframe.html"
+  src="assets/interactive_dataframe_two.html"
   width="800"
   height="600"
   frameborder="0"
