@@ -60,6 +60,8 @@ Important adjustments:
   frameborder="0"
 ></iframe>
 
+For our univariate analysis we are examining the distribution of the ratings column. We see here a heavily left skewed distribution as nearly 80% of the ratings are a 5. This will be extremely important for our model predictions later in this project. 
+
 
 
 <iframe
