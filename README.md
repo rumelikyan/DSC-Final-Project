@@ -74,20 +74,29 @@ For our univariate analysis we are examining the distribution of the ratings col
 For the bivariate analysis, we are examining the relationship between protein percentage daily value and recipe ratings. High protein refers to protein pdv above 20%, whereas low protein refers to protein pdv below 20%. For both low and high protein recipes, the count per rating is descending, with the most of each being rated as 5 and the least being 1. Additionally, the difference in the proportions does not vary very much per rating.
 
 ***Interesting Aggregates***
-This pivot table was created by aggregating by mean the high and low protein and carb recipes. This pivot table shows the mean ratings of recipes categorized by whether they have healthy protein content (protein_PDV > 20) and healthy carb content (carbs_PDV < 20). For example, the top line of the pivot table shows us that the average rating for recipes with an "unhealthy" amount of protein and carbs is 4.658152 whereas the bottom line shows us that the the average rating for recipes with an "healthy" amount of both protein and carbs is 4.676057. This can be helpful for our model later, since recipes with protein_PDV > 20 and carbs_PDV < 20 are more likely to be higher ratings.
+This pivot table shows the mean ratings of recipes categorized by whether they have healthy protein content (protein_PDV > 20) and healthy carb content (carbs_PDV < 20). For example, the top line of the pivot table shows us that the average rating for recipes with an "unhealthy" amount of protein and carbs is 4.658152 whereas the bottom line shows us that the the average rating for recipes with an "healthy" amount of both protein and carbs is 4.676057.
 
+<iframe
+  src="assets/figure.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
-# Assessment of Missingness
+***merged dataset***
+<iframe
+  src="assets/interactive_dataframe.html"
+  width="800"
+  height="600"
+  frameborder="0"
+style="background: #FFFFFF;"
+></iframe>
 
-***NMAR Analysis***
-We believe that the rating column could be NMAR. If someone does not have strong feelings about the recipe they tried, it is reasonable to assume that they might not leave a rating. If someone strongly enjoyed the recipe, they are quite likely to leave a rating (a high rating), and similarly, if someone strongly disliked the recipe, they are quite likely to leave a rating (a low rating). Speaking from our own experience, we have only left ratings on things (games, movies, restaurants) when we either strongly enjoyed it or strongly disliked it. Notably, we also went through each column and found the proportion of missing values, and *'rating'* contained the most by a significant margin. 
-
-***Missingness Dependency***
-We are now examining the missingness of the ratings column. Specifically here, we are investigating whether the missiness in the *'rating'* column depends on the *'n_steps'* column.
-
-**Null Hypothesis**: The missingness of ratings does not depend on the recipe's number of steps.
-**Alternate Hypothesis**: The missingness of ratings does depend on the recipe's number of steps.
-**Test Statistic**: The absolute difference of the mean number of steps for ratings that are missing and ratings that are not missing.
-**Significance Level**: 0.05
-
-We performed a standard permutation test, shuffling on the *'rating'* column, for each repetition, computing the absolute difference between the mean number of steps for ratings that are missing and ratings that aren't missing. The **observed test statistic** was approximately **1.34**. As can be seen in the graph, after running 1000 simulations, most test statistics in the permutation test hover between 0 and 0.14. The **p-value** is **0.00** and thus we can reject the null hypothesis. The missingness of 'rating' does depend on the 'n_steps' column (the number of steps in the recipe). 
+**Aggregating Table**
+<iframe
+  src="assets/interactive_pivot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+style="background: #FFFFFF;"
+></iframe>
