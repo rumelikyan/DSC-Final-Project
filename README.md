@@ -62,6 +62,14 @@ Important adjustments:
 
 For our univariate analysis we are examining the distribution of the ratings column. We see here a heavily left skewed distribution as nearly 80% of the ratings are a 5. This will be extremely important for our model predictions later in this project. 
 
+*** Bivariate Analysis ***
+<iframe
+  src="assets/figure_bivariate_correct.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 
 
 <iframe
