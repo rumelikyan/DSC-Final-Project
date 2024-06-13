@@ -100,3 +100,20 @@ style="background: #FFFFFF;"
   frameborder="0"
 style="background: #FFFFFF;"
 ></iframe>
+
+<iframe
+  src="assets/rating_v_minutes.html"
+  width="800"
+  height="600"
+  frameborder="0"
+style="background: #FFFFFF;"
+></iframe>
+
+<iframe
+  src="assets/rating_v_nsteps.html"
+  width="800"
+  height="600"
+  frameborder="0"
+style="background: #FFFFFF;"
+></iframe>
+
