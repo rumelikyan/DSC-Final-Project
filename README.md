@@ -66,8 +66,8 @@ style="background: #FFFFFF;"
 ***Univariate Analysis***
 <iframe
   src="assets/figure_univariate.html"
-  width="800"
-  height="600"
+  width="600"
+  height="300"
   frameborder="0"
 ></iframe>
 
