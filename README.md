@@ -151,30 +151,45 @@ This small but consistent difference suggests that users may **slightly favor re
 
 
 
-**Aggregating Table**
+## Aggregating Table
+
+Below is an interactive pivot table showing the mean ratings of recipes categorized by protein and carbohydrate healthiness:
+
 <iframe
   src="assets/interactive_pivot.html"
   width="800"
   height="600"
   frameborder="0"
-style="background: #FFFFFF;"
+  style="background: #FFFFFF; border: 1px solid #ccc;"
 ></iframe>
 
-# Assessment of Missingness
+This table displays the average rating for recipes based on whether they have a high or low Protein PDV (above or below 20%) and a high or low Carbs PDV (above or below 20%). For example, the top row of the table shows that recipes with both **unhealthy protein and carbs** have an average rating of **4.658**, while the bottom row shows that recipes with **healthy protein and carbs** have an average rating of **4.676**. Though the difference is small, it suggests a slight preference for "healthier" recipes, which may help improve the accuracy of our predictive models.
 
-***NMAR Analysis***
-We believe that the rating column could be NMAR. If someone does not have strong feelings about the recipe they tried, it is reasonable to assume that they might not leave a rating. If someone strongly enjoyed the recipe, they are quite likely to leave a rating (a high rating), and similarly, if someone strongly disliked the recipe, they are quite likely to leave a rating (a low rating). Speaking from our own experience, we have only left ratings on things (games, movies, restaurants) when we either strongly enjoyed it or strongly disliked it. Notably, we also went through each column and found the proportion of missing values, and *'rating'* contained the most by a significant margin.
+---
 
-***Missingness Dependency***
-*Ratings vs. number of steps*
-We are now examining the missingness of the ratings column. Specifically here, we are investigating whether the missiness in the *'rating'* column depends on the *'n_steps'* column. 
+## Assessment of Missingness
 
-**Null Hypothesis**: The missingness of ratings does not depend on the recipe's number of steps.
-**Alternate Hypothesis**: The missingness of ratings does depend on the recipe's number of steps.
-**Test Statistic**: The absolute difference of the mean number of steps for ratings that are missing and ratings that are not missing.
-**Significance Level**: 0.05
+### NMAR Analysis
 
-We performed a standard permutation test, shuffling on the *'rating'* column, for each repetition, computing the absolute difference between the mean number of steps for ratings that are missing and ratings that aren't missing. The **observed test statistic** was approximately **1.34**. As can be seen in the graph, after running 1000 simulations, most test statistics in the permutation test hover between 0 and 0.14. The **p-value** is **0.00** and thus we can reject the null hypothesis. The missingness of 'rating' does depend on the 'n_steps' column (the number of steps in the recipe). 
+We believe that the `rating` column is likely **Not Missing At Random (NMAR)**. If a user has a neutral experience with a recipe, they may be less motivated to leave a rating. In contrast, people are more likely to leave a rating if they either **really liked** or **really disliked** a recipe.
+
+This behavior aligns with anecdotal experience — users often rate content like games, movies, or restaurants only when their opinion is strong. To support this, we examined all columns and found that the `rating` column had the **highest proportion of missing values**, by a significant margin.
+
+---
+
+### Missingness Dependency: `rating` vs. `n_steps`
+
+To test whether the missingness in the `rating` column depends on the number of steps (`n_steps`) in a recipe, we conducted a **permutation test**.
+
+- **Null Hypothesis (H₀)**: The missingness of `rating` is independent of `n_steps`.
+- **Alternative Hypothesis (H₁)**: The missingness of `rating` depends on `n_steps`.
+- **Test Statistic**: The absolute difference in the mean number of steps between recipes with missing and non-missing ratings.
+- **Significance Level**: α = 0.05
+
+We shuffled the `rating` column 1,000 times, recalculating the difference in mean `n_steps` each time. The **observed test statistic** was **~1.34**, while the distribution of simulated test statistics mostly ranged between **0 and 0.14**. This resulted in a **p-value of 0.00**.
+
+**Conclusion**: We reject the null hypothesis and conclude that the missingness in `rating` **does depend** on the number of steps in a recipe. This implies that more complex recipes (with more steps) may influence whether or not users choose to leave a rating.
+
 
 *Ratings vs. Time to Complete Recipe*
 We are once again examining the missingness of the ratings column. Specifically here, we are investigating whether the missiness in the *'rating'* column depends on the *'minutes'* column. 
