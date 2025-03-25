@@ -87,43 +87,67 @@ The first goal in our analysis was to clean and prepare the data for further exp
 
 ---
 
-### Preview of Merged Dataset
+## Preview of Merged Dataset
 
 You can interact with a sample of the cleaned dataset below:
 
-```html
 <iframe
   src="assets/interactive_dataframe_two.html"
   width="800"
   height="600"
   frameborder="0"
-  style="background: #FFFFFF;"
+  style="background: #FFFFFF; border: 1px solid #ccc;"
 ></iframe>
 
+---
 
+## Univariate Analysis
 
-***Univariate Analysis***
 <iframe
   src="assets/figure_univariate.html"
   width="600"
   height="300"
   frameborder="0"
+  style="border: 1px solid #ccc;"
 ></iframe>
 
-For our univariate analysis we are examining the distribution of the ratings column. We see here a heavily left skewed distribution as nearly 80% of the ratings are a 5. This will be extremely important for our model predictions later in this project. 
+In our univariate analysis, we examine the distribution of the `rating` column. The plot shows a **heavily left-skewed distribution**, with nearly **80% of ratings being a 5**. This suggests strong user satisfaction but also presents a challenge for modeling due to class imbalance — a critical insight for the predictive modeling stage of the project.
 
-***Bivariate Analysis***
+---
+
+## Bivariate Analysis
+
 <iframe
   src="assets/figure_bivariate_correct.html"
   width="800"
   height="600"
   frameborder="0"
+  style="border: 1px solid #ccc;"
 ></iframe>
 
-For the bivariate analysis, we are examining the relationship between protein percentage daily value and recipe ratings. High protein refers to protein pdv above 20%, whereas low protein refers to protein pdv below 20%. For both low and high protein recipes, the count per rating is descending, with the most of each being rated as 5 and the least being 1. Additionally, the difference in the proportions does not vary very much per rating.
+In this bivariate analysis, we explore how **Protein PDV** relates to user ratings. We split recipes into:
 
-***Interesting Aggregates***
-This pivot table was created by aggregating by mean the high and low protein and carb recipes. This pivot table shows the mean ratings of recipes categorized by whether they have healthy protein content (protein_PDV > 20) and healthy carb content (carbs_PDV < 20). For example, the top line of the pivot table shows us that the average rating for recipes with an "unhealthy" amount of protein and carbs is 4.658152 whereas the bottom line shows us that the the average rating for recipes with an "healthy" amount of both protein and carbs is 4.676057. This can be helpful for our model later, since recipes with protein_PDV > 20 and carbs_PDV < 20 are more likely to be higher ratings.
+- **High Protein**: Protein PDV > 20%
+- **Low Protein**: Protein PDV ≤ 20%
+
+For both groups, the majority of recipes are rated 5, with counts decreasing as ratings decrease. The overall shape of the distributions is similar, suggesting that **protein content alone may not significantly influence rating**, but subtle differences may still be relevant when combined with other features.
+
+---
+
+## Interesting Aggregates
+
+We created a pivot table by calculating the **mean rating** across categories defined by:
+
+- **Healthy Protein**: Protein PDV > 20
+- **Healthy Carbs**: Carbs PDV < 20
+
+This resulted in four distinct combinations. For example:
+
+- Recipes with both **unhealthy protein and unhealthy carbs** had an average rating of **4.658**
+- Recipes with both **healthy protein and healthy carbs** had an average rating of **4.676**
+
+This small but consistent difference suggests that users may **slightly favor recipes that appear healthier**, a trend that may prove helpful in prediction modeling later in the project.
+
 
 
 
