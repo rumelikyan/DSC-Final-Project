@@ -91,13 +91,16 @@ The first goal in our analysis was to clean and prepare the data for further exp
 
 You can interact with a sample of the cleaned dataset below:
 
-<iframe
-  src="assets/interactive_dataframe_two.html"
-  width="800"
-  height="600"
-  frameborder="0"
-  style="background: #FFFFFF; border: 1px solid #ccc;"
-></iframe>
+<div style="display: flex; justify-content: center; margin: 20px 0;">
+  <iframe
+    src="assets/interactive_dataframe_two.html"
+    width="800"
+    height="500"
+    frameborder="0"
+    style="background: #FFFFFF; border: 1px solid #ccc; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-radius: 8px;"
+  ></iframe>
+</div>
+
 
 ---
 
