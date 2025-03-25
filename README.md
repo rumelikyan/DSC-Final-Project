@@ -34,44 +34,72 @@ Our merged dataset contains **17 columns** sourced from recipe and user interact
 
 ---
 
-The most important components in this dataframe is the nutrition column that will provide unique health information to each recipe and be distinct every time. Another important column is the number of steps, the complexity of a recipe can certainly contribute twoards the likelihood of leaving a rating and the rating itself. The tags column also has important information in finding trends between types of foods and their ratings.
+## Key Data Components
 
-# Data Cleaning and Exploratory Analysis
+Among all the columns in our dataset, a few stand out as particularly important:
 
-In this section the goal was firstly to yield a dataframe from our initially merged dataset with all columns in the most convenient data type, the columns that needed changing were:
+- **`nutrition`**: This column holds detailed health-related information for each recipe and is unique for every entry. It includes key nutritional metrics such as calories, sodium, protein, carbohydrates, sugar, and saturated fat — all expressed in Percent Daily Value (PDV).
+- **`n_steps`**: The number of steps in a recipe can serve as a proxy for its complexity, which may influence a user's likelihood of leaving a rating, as well as the rating itself.
+- **`tags`**: These provide useful metadata about the type of food, cooking method, cuisine, or occasion. Analyzing these can reveal trends between recipe types and user preferences.
 
-| `nutrition`          | Exploded the elements and changed it from str to list |
-| `tags`            | Changed the column such that the tags were in a list |
-| `Average Rating`       | Added average rating column int |
-| `contributor_id`| Unique contributor user ID |
-| `submitted`     | Date time object |
+---
 
-***Average Rating***
-Important adjustments:
-1. Merged the recipe and interactions dataframes
-   - A left merge on 'id' was performed in order to match each unique recipe with their corresponding rating and review.
+## Data Cleaning and Exploratory Analysis
 
-***merged dataset***
+The first goal in our analysis was to clean and prepare the data for further exploration. We started by transforming the merged dataset so that all columns were in the most convenient and usable data types.
+
+### Key Changes:
+
+| Column             | Transformation |
+|--------------------|----------------|
+| `nutrition`        | Converted from string to list format (exploded elements) |
+| `tags`             | Converted from string to list format |
+| `Average Rating`   | Added as a new numeric column |
+| `contributor_id`   | Converted to consistent ID format |
+| `submitted`        | Converted to `datetime` object |
+
+---
+
+### Average Rating Calculation
+
+**Important adjustments:**
+
+1. **Merging Datasets**  
+   We performed a left merge between the recipe and interactions dataframes using the `id` column, matching each unique recipe with its corresponding ratings and reviews.
+
+2. **Handling Missing Ratings**  
+   Recipes with a rating of `0` were treated as missing values (`np.nan`) since these were not proper ratings but rather passive interactions. Including them would have skewed the results, as valid ratings typically range from 1 to 5.
+
+3. **Creating the `Average Rating` Column**  
+   Ratings were aggregated by `recipe_id` to calculate the average rating for each recipe, accounting for multiple ratings by different users.
+
+4. **Renaming Columns**  
+   After merging, pandas appends `_x` and `_y` to duplicate column names. We renamed `rating_y` to `average_rating` and `rating_x` to `rating` for clarity.
+
+5. **Evaluating Stringified Lists**  
+   Both `nutrition` and `tags` originally contained strings that represented Python lists. We used `eval()` to convert these into proper list objects.
+
+6. **Splitting the Nutrition Column**  
+   The `nutrition` list was split into **seven new columns**, each representing a specific nutritional value (e.g., calories, protein, carbs, etc.). This made the nutritional data easier to analyze individually.
+
+7. **Datetime Conversion**  
+   The `submitted` and `date` columns were converted from object types to proper datetime format (`YYYY-MM-DD`) using `pd.to_datetime()`. This facilitates time-based analysis in future steps.
+
+---
+
+### Preview of Merged Dataset
+
+You can interact with a sample of the cleaned dataset below:
+
+```html
 <iframe
   src="assets/interactive_dataframe_two.html"
   width="800"
   height="600"
   frameborder="0"
-style="background: #FFFFFF;"
+  style="background: #FFFFFF;"
 ></iframe>
 
-2. Filling null values in ratings with np.nan
-   - This was an important step because the recipe's that received a rating of 0 were not properly rated and were just observations, therefore they should not be taken in to account when taking an average. Additionally ratings are typically between 1-5 therefore to avoid bias in the data, we filled it with 0's.
-3. Added the column ***Average Rating***:
-   - We grouped by the unique recipe id column and found the average rating per recipe. This is because there are multiple ratings from different users per recipe.
-4. Renamed columns
-   - When merging and there happens to be a column in the left df with the same name as a column in the right df, it will add '_x' or '_y' to the end of the column name. We made sure to rename 'rating_y' to 'average rating', and 'rating_x' to 'rating' to make our dataframe names more coherent.
-5. Applied the eval operation to the nutrition and tags columns:
-   - The nutrition and tags columns contained strings of list. Applying eval removes these strings, and ensures that they are lists as is desired.
-6. Split the nutrition column into 7 other columns (one for each piece of data in the nutrition list)
-   - We applied a function that grabbed each unique value in the list, created a new column for each value in the list, and added that value to its corresponding new column.
-7. Converted 'submitted' and 'date' columns to correct format
-   - Using pd.to_datetime, we converted these two columns from objects to the correct datetime format of Year-Month-Day, which will allow us to easily perform analysis on dates if needed.
 
 
 ***Univariate Analysis***
