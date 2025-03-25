@@ -1,27 +1,38 @@
-# Introduction and Question Identification:
-It is important to every restaurant to know how their recipes will influence customer satisfaction. More importantly, we find it to be rather important to us to be able to guage how good a recipe is solely from its contents and the categorization of the recipe. Knowing this information helps restaurants optimize their recipes and it also helps people to optimize their cooking experience. Therefore, our investigration aims to find how the amount of ***Carbohydrates (PDV)*** and ***Protein (PDV)*** affect a recipe's ratings. This will help us unravel to what extent do people consider the perceived healthiness of a meal when making a rating. [High Percentage Daily Value of a nutrient according to the FDA](https://www.fda.gov/food/nutrition-facts-label/lows-and-highs-percent-daily-value-nutrition-facts-label#:~:text=20%25%20DV%20or%20more%20of,per%20serving%20is%20considered%20high.) is 20%, and we thus plan to utilize this in our further analysis.
+# Introduction and Question Identification
 
-The original merged dataframe contains 12 columns
+Understanding how a recipe influences customer satisfaction is crucial for any restaurant. In our project, we aim to explore whether it's possible to **predict how good a recipe is** based solely on its contents and categorization.
+
+More specifically, we investigate how the **Percent Daily Value (PDV)** of **Carbohydrates** and **Protein** impacts a recipe’s user **rating**. This can help restaurants optimize their offerings and also guide home cooks in creating more appealing dishes.
+
+According to the [FDA](https://www.fda.gov/food/nutrition-facts-label/lows-and-highs-percent-daily-value-nutrition-facts-label#:~:text=20%25%20DV%20or%20more%20of,per%20serving%20is%20considered%20high.), a PDV of 20% or more is considered high. We'll use this threshold as a reference point in our analysis to evaluate whether nutrient density (perceived "healthiness") plays a role in how recipes are rated.
+
+---
+
+## Dataset Overview
+
+Our merged dataset contains **17 columns** sourced from recipe and user interaction data:
 
 | Column          | Description |
 |-----------------|-------------|
 | `name`          | Recipe name assigned by creator |
 | `id`            | Unique recipe ID |
-| `minutes`       | Recipe preperation time in minutes |
+| `minutes`       | Recipe preparation time in minutes |
 | `contributor_id`| Unique contributor user ID |
-| `submitted`     | Date recipe was submitted |
-| `tags`          | Food.com tags from creator |
-| `nutrition`     | Nutrition information on calories and percent daily value for sodium, protein, carbs, sugar and saturated fats|
-| `n_steps`       | Number of steps in recipe |
-| `steps`         | Text for recipe steps, in order |
-| `description`   | User-provided description |
-| `ingredients`   | Text for recipe ingredients |
-| `n_ingredients` | Number of ingredients in recipe |
-| `user id`         | unique user ID from interactions DF |
-| `recipe id`   | unique recipe ID from interactions DF |
-| `date`   | Date of interation with recipe |
-| `rating` | Given Rating |
-| `review` | Given Review |
+| `submitted`     | Date the recipe was submitted |
+| `tags`          | Food.com tags assigned by the creator |
+| `nutrition`     | Nutrition info: calories and PDV for sodium, protein, carbs, sugar, and saturated fats |
+| `n_steps`       | Number of steps in the recipe |
+| `steps`         | Ordered list of recipe steps |
+| `description`   | User-provided recipe description |
+| `ingredients`   | List of ingredients |
+| `n_ingredients` | Number of ingredients |
+| `user_id`       | Unique user ID from interactions data |
+| `recipe_id`     | Unique recipe ID from interactions data |
+| `date`          | Date of interaction with the recipe |
+| `rating`        | Given user rating |
+| `review`        | Given user review |
+
+---
 
 The most important components in this dataframe is the nutrition column that will provide unique health information to each recipe and be distinct every time. Another important column is the number of steps, the complexity of a recipe can certainly contribute twoards the likelihood of leaving a rating and the rating itself. The tags column also has important information in finding trends between types of foods and their ratings.
 
